@@ -1,0 +1,549 @@
+@import "./reset.css";
+
+/* Подключение шрифтов */
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Poppins:wght@400;500;700&display=swap");
+
+/* 
+c
+font-family: 'Poppins', sans-serif;
+ */
+
+/* * {
+  border: 1px solid red;
+} */
+
+:root {
+  /* * создаем переменные для цвета */
+  --black: #171718;
+  --black-border: #26292d;
+  --white: white;
+  --purple: #5c62ec;
+
+  --text-color: var(--black);
+  --dark-bg: var(--black);
+  --darck-border: var(--black-border);
+  --header-text: var(--white);
+  --accent: var(--purple);
+
+  /* Light mode */
+  --page-bg: var(--white);
+  --tex-color: var(--black);
+
+  --title-1: var(--accent);
+  --title-2: var(--black);
+
+  --project-card-bg: var(--white);
+  --project-card-text: var(--black);
+
+  /* shadow */
+  --box-shadow: 0px 5px 35px rgba(0, 0, 0, 0.25);
+
+}
+
+.dark {
+  /* Dark mode */
+  --page-bg: #252526;
+  --tex-color: var(--white);
+
+  --title-1: var(--white);
+  --title-2: var(--white);
+
+  --project-card-bg: var(--black);
+  --project-card-text: var(--white);
+
+  /* shadow */
+  --box-shadow: 0px 5px 35px rgba(0, 0, 0, 0.8);
+}
+
+html,
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+
+  font-family: "DM Sans", sans-serif;
+  letter-spacing: -0.5px;
+  
+  /* Light mode */
+  background-color: var(--page-bg);
+  color: var(--tex-color);
+}
+
+/* todo General start */
+
+.container {
+  margin: 0 auto;
+  /* ? выравниваем контейнер по центру margin 0 auto */
+
+  padding: 0 15px;
+  /* ? padding с краев - при сжатии страницыконтент не прилипает к краям!
+  ? максимальная ширина контента 1170 по макету но мы дабавляем padding по 15 с двух сторон 
+  ? следовательно width 1200px */
+
+  max-width: 1200px;
+}
+
+.section {
+  padding: 70px 0;
+}
+
+.title-1 {
+  margin-bottom: 60px;
+
+  font-weight: 700;
+  font-size: 60px;
+  line-height: 1.3;
+  color: var(--title-1);
+  text-align: center;
+}
+
+.title__2 {
+  margin-bottom: 20px;
+
+  font-weight: 700;
+  font-size: 40px;
+  line-height: 1.3;
+  color: --;
+}
+
+/* todo General end */
+
+/* todo Nav style start */
+
+.nav {
+  padding: 20px 0;
+  border-bottom: 1px solid var(--darck-border);
+  background-color: var(--dark-bg);
+  color: var(--header-text);
+  letter-spacing: normal;
+}
+
+.nav__row {
+  display: flex;
+  justify-content: flex-end;
+
+  align-items: center;
+  /* ? для того что бы логотип и текст были относительно длуг друга на одной центральной линии  */
+
+  column-gap: 30px;
+  /* ? расстояние между колонками */
+
+  row-gap: 20px;
+  /* ? утанавливает промежуток между рядами, для адаптива!  */
+
+  flex-wrap: wrap;
+  /* ? устанавливает перенос контейнеров при сжатии контейнера для адаптива */
+}
+
+.logo {
+  margin-right: auto;
+
+  font-family: "Poppins", sans-serif;
+  font-size: 24px;
+  color: var(--header-text);
+}
+
+.logo strong {
+  font-weight: 700;
+}
+
+.nav__list {
+  display: flex;
+  flex-wrap: wrap;
+
+  align-items: center;
+  column-gap: 40px;
+  row-gap: 10px;
+
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 24px;
+  font-family: "Poppins", sans-serif;
+}
+
+.nav__list-link {
+  color: var(--header-text);
+
+  transition: opacity 0.2s ease-in;
+}
+
+.nav__list-link:hover {
+  opacity: 0.8;
+}
+
+.nav__list-link--active {
+  position: relative;
+}
+
+.nav__list-link--active::before {
+  content: "";
+
+  position: absolute;
+  left: 0;
+  top: 100%;
+
+  display: block;
+  height: 2px;
+  width: 100%;
+  background-color: var(--accent);
+}
+
+/** Dark mode bnt */
+  
+.dark__mode-btn {
+  order: 9;
+
+  display: flex;
+  justify-content: space-between;
+
+  width: 51px;
+  height: 26px;
+  padding: 5px;
+
+  background-color: #272727;
+  border-radius: 50px;
+  
+  position: relative;
+}
+
+.dark__mode-btn::before {
+  content: "";
+
+  position: absolute;
+  top: 1px;
+  left: 1px;
+
+  display: block;
+  width: 24px;
+  height: 24px;
+
+  border-radius: 50%;
+  background-color: var(--white);
+
+  transition: left 0.2s ease-in;
+}
+
+.dark__mode-btn--activ::before {
+  left: 26px;
+
+}
+
+.dark__mode-btn-icon {
+  position: relative;
+  z-index: 9;
+}
+
+/* todo Nav style end */
+
+/* todo Header style start */
+
+.header {
+  padding: 40px 0;
+  min-height: 695px;
+
+  display: flex;
+
+  justify-content: center;
+  align-items: center;
+  /* ? Таким способом justify-content мы выравниваем по горизонтали
+  ? align-items выравниваем по вертикали */
+
+  background-color: var(--dark-bg);
+  /* ? Размещаем картинку bg и прописываем ей свойства */
+  background-image: url(./../img/header-bg.png);
+  background-repeat: no-repeat;
+  background-size: auto;
+  background-position: center center;
+
+  color: var(--header-text);
+  text-align: center;
+}
+.header__wrapper {
+  padding: 0 15px;
+  max-width: 660px;
+}
+.header__title {
+  margin-bottom: 20px;
+  font-size: 40px;
+  font-weight: 700;
+  line-height: 1.4;
+}
+
+.header__title strong {
+  font-weight: 700;
+  font-size: 60px;
+}
+
+.header__title em {
+  font-style: normal;
+  color: var(--accent);
+}
+
+.header__text {
+  margin-bottom: 40px;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 1.333;
+}
+
+.header__text p + p {
+  margin-top: 0.5em;
+}
+
+.btn {
+  /* ? Создаем кнопку */
+  display: inline-block;
+  height: 48px;
+  padding: 12px 28px;
+
+  border-radius: 5px;
+  background-color: var(--accent);
+  color: var(--white);
+  letter-spacing: 0.15px;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 24px;
+
+  /* ? Задаем плавный переход для opacity hover */
+  transition: opacity 0.2s ease-in;
+}
+
+.btn:hover {
+  opacity: 0.8;
+}
+
+.btn:active {
+  /* ? Создаем прожатие кнопки */
+  position: relative;
+  top: 1px;
+}
+
+/* todo Header style end */
+
+/* todo Projects style start */
+
+.projects {
+  display: flex;
+
+  justify-content: center;
+  /* ? Контейнеры с контентом выравниваются по центру, а не прилипают к краю! */
+
+  align-items: center;
+  /* ? для того что бы логотип и текст были относительно длуг друга на одной центральной линии  */
+
+  column-gap: 30px;
+  /* ? расстояние между колонками */
+
+  row-gap: 30px;
+  /* ? утанавливает промежуток между рядами, для адаптива!  */
+
+  flex-wrap: wrap;
+  /* ? устанавливает перенос контейнеров при сжатии контейнера */
+}
+.project {
+  max-width: 370px;
+  background-color: var(--project-card-bg);
+  box-shadow: var(--box-shadow);
+  border-radius: 10px;
+}
+.project__img {
+  border-radius: 10px;
+}
+.project__title {
+  padding: 15px 20px 25px;
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 1.3;
+  color: var(--project-card-text);
+}
+
+/* todo Projects style end */
+
+/* todo Project details style start */
+
+.project__details {
+  max-width: 865px;
+  margin: 0 auto;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.project__details-cover {
+  max-width: 100%;
+  margin-bottom: 40px;
+
+  filter: drop-shadow(0px 5px 35px rgba(0, 0, 0, 0.25));
+  border-radius: 10px;
+}
+.project__details-dsc {
+  margin-bottom: 30px;
+
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 1.3;
+  text-align: center;
+}
+.button__outline {
+  display: flex;
+  column-gap: 10px;
+  align-items: center;
+
+  height: 48px;
+  border-radius: 5px;
+  padding: 12px 20px;
+
+  border: 1px solid black;
+  background-color: var(--white);
+  color: black;
+
+  transition: opacity 0, 2s ease-in;
+}
+
+.button__outline:hover {
+  opacity: 0.8;
+}
+
+.button__outline:active {
+  /* ? Создаем прожатие кнопки */
+  position: relative;
+  top: 1px;
+}
+
+/* todo Project details style end */
+
+/* todo Skills style start */
+
+.content__list {
+  margin: 0 auto;
+  max-width: 570px;
+  display: flex;
+  flex-direction: column;
+  row-gap: 40px;
+  align-items: center;
+  text-align: center;
+}
+
+.content__list a {
+  color: var(--accent);
+}
+
+.content__list-item {
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 1.5;
+}
+
+.content__list-item p + p {
+  margin-top: 0.5em;
+}
+
+/* todo Skills style end */
+
+/* todo Footer style start */
+
+.footer {
+  margin-top: auto;
+  padding: 60px 0 50px;
+  background-color: var(--dark-bg);
+  color: var(--header-text);
+}
+
+.footer__wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  row-gap: 27px;
+}
+
+.social {
+  display: flex;
+  column-gap: 30px;
+  align-items: center;
+}
+.social__item {
+}
+.copiright {
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+.copiright p + p {
+  /* ? Предусмотрим отступ при добавления новых p */
+  margin-top: 0.5em;
+}
+
+/* todo Footer style end */
+
+/* todo  Media query start */
+
+@media (max-width: 620px) {
+  .header {
+    min-height: unset;
+  }
+
+  .header__title {
+    font-size: 30px;
+  }
+
+  .header__title strong {
+    font-size: 40px;
+  }
+
+  .nav__row {
+    justify-content: space-between;
+  }
+
+  .dark__mode-btn {
+    order: 0;
+  }
+
+  .section {
+    padding: 40px 0;
+  }
+
+  .title-1 {
+    margin-bottom: 40px;
+    font-size: 40px;
+  }
+
+  .title__2 {
+    margin-bottom: 10px;
+    font-size: 30px;
+}
+
+  .footer {
+    padding: 40px 0 30px;
+  }
+
+  .footer__wrapper {
+    row-gap: 20px;
+  }
+
+  .footer__wrapper {
+    row-gap: 20px;
+  }
+
+  .social__item {
+    width: 28px;
+  }
+
+  .social {
+    column-gap: 20px;
+  }
+
+  .content__list {
+    row-gap: 20px;
+  }
+
+  .project__details-dsc {
+    margin-bottom: 20px;
+    font-size: 22px;
+}
+
+}
+
+/* todo  Media query end */
+
